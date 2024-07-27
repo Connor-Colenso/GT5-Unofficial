@@ -23,7 +23,6 @@ import gregtech.api.net.GT_Packet;
 import gregtech.api.net.GT_Packet_Block_Event;
 import gregtech.api.net.GT_Packet_ClientPreference;
 import gregtech.api.net.GT_Packet_GtTileEntityGuiRequest;
-import gregtech.api.net.GT_Packet_MultiTileEntity;
 import gregtech.api.net.GT_Packet_Pollution;
 import gregtech.api.net.GT_Packet_RequestCoverData;
 import gregtech.api.net.GT_Packet_SendCoverData;
@@ -75,7 +74,7 @@ public class GT_Network extends MessageToMessageCodec<FMLProxyPacket, GT_Packet>
             new GT_Packet_GtTileEntityGuiRequest(), // 15
             new GT_Packet_SendCoverData(), // 16
             new GT_Packet_RequestCoverData(), // 17
-            new GT_Packet_MultiTileEntity(true), // 18
+            // 18
             new GT_Packet_SendOregenPattern(), // 19
             new GT_Packet_ToolSwitchMode() // 20
         );
