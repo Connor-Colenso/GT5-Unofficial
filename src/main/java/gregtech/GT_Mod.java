@@ -35,6 +35,7 @@ import com.google.common.collect.SetMultimap;
 
 import appeng.api.AEApi;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -280,7 +281,7 @@ public class GT_Mod implements IGT_Mod {
         new GT_Loader_ItemData().run();
         new GT_Loader_Item_Block_And_Fluid().run();
         new GT_Loader_MetaTileEntities().run();
-        if (GT_Values.enableMultiTileEntities) {
+        if (GT_Values.enableMultiTileEntities && Loader.isModLoaded("mutecore")) {
             new GT_Loader_MultiTileEntities().run();
         }
 
