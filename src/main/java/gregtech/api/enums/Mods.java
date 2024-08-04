@@ -109,6 +109,7 @@ public enum Mods {
     MineAndBladeBattleGear2(Names.MINE_AND_BLADE_BATTLE_GEAR2),
     Minecraft(Names.MINECRAFT),
     MineTweaker(Names.MINE_TWEAKER),
+    MuTECore(Names.MUTECORE),
     NEICustomDiagrams(Names.N_E_I_CUSTOM_DIAGRAMS),
     NEIOrePlugin(Names.N_E_I_ORE_PLUGIN),
     Natura(Names.NATURA),
@@ -291,6 +292,7 @@ public enum Mods {
         public static final String MINE_AND_BLADE_BATTLE_GEAR2 = "battlegear2";
         public static final String MINECRAFT = "minecraft";
         public static final String MINE_TWEAKER = "MineTweaker3";
+        public static final String MUTECORE = "mutecore";
         public static final String N_E_I_CUSTOM_DIAGRAMS = "neicustomdiagram";
         public static final String N_E_I_ORE_PLUGIN = "gtneioreplugin";
         public static final String NATURA = "Natura";
