@@ -539,6 +539,7 @@ public class GT_Mod implements IGT_Mod {
         }
 
         GT_PostLoad.addSolidFakeLargeBoilerFuels();
+        GT_PostLoad.makeWaterFilter();
         GT_PostLoad.identifyAnySteam();
 
         achievements = new GT_Achievements();
