@@ -11,57 +11,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download artifacts from Build and test
-      uses: actions/download-artifact@v4
-      with:
-        name: ${{ github.repository_id }}-build-libs
-        path: build/libs
+      - name: TESTING!
+        run: ls -la build/libs
 
-    - name: Download artifacts from the specified run
-      uses: actions/download-artifact@v4
-      with:
-        name: server-new
-        path: artifacts
+      - name: Download artifacts from Build and test
+        uses: actions/download-artifact@v4
+        with:
+          name: build-libs
+          path: build/libs
 
-    - name: Unzip the first level
-      run: |
-        mkdir -p extracted1
-        unzip artifacts/server-new.zip -d extracted1
+      - name: Download artifacts from the specified run
+        uses: actions/download-artifact@v4
+        with:
+          name: server-new
+          path: artifacts
 
-    - name: Unzip the second level
-      run: |
-        mkdir -p extracted2
-        unzip extracted1/server-new.zip -d extracted2
+      - name: Unzip the first level
+        run: |
+          mkdir -p extracted1
+          unzip artifacts/server-new.zip -d extracted1
 
-    - name: Modify eula.txt
-      run: |
-        sed -i 's/eula=false/eula=true/' extracted2/eula.txt
+      - name: Unzip the second level
+        run: |
+          mkdir -p extracted2
+          unzip extracted1/server-new.zip -d extracted2
 
-    - name: Move JARs to mods folder
-      run: |
-        mkdir -p extracted2/mods
-        cp build/libs/*.jar extracted2/mods/
+      - name: Modify eula.txt
+        run: |
+          sed -i 's/eula=false/eula=true/' extracted2/eula.txt
 
-    - name: Run the server
-      run: |
-        cd extracted2
-        chmod +x ./startserver-java9.sh
-        ./startserver-java9.sh &
-        SERVER_PID=$!
+      - name: Move JARs to mods folder
+        run: |
+          mkdir -p extracted2/mods
+          cp build/libs/*.jar extracted2/mods/
 
-        # Wait for 4 minutes to ensure the server runs correctly
-        sleep 240
+      - name: Run the server
+        run: |
+          cd extracted2
+          chmod +x ./startserver-java9.sh
+          ./startserver-java9.sh &
+          SERVER_PID=$!
 
-        # Check if the server is still running
-        if ps -p $SERVER_PID > /dev/null; then
-          echo "Server is running successfully."
-          exit 0
-        else
-          echo "Server has crashed or failed."
-          exit 1
-        fi
+          # Wait for 4 minutes to ensure the server runs correctly
+          sleep 240
 
-    - name: Clean up
-      if: always()
-      run: |
-        kill $SERVER_PID || true
+          # Check if the server is still running
+          if ps -p $SERVER_PID > /dev/null; then
+            echo "Server is running successfully."
+            exit 0
+          else
+            echo "Server has crashed or failed."
+            exit 1
+          fi
+
+      - name: Clean up
+        if: always()
+        run: |
+          kill $SERVER_PID || true
